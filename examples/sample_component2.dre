@@ -3,7 +3,7 @@
 -->
 <composition>
   <screens>
-    <screen>
+    <screen type="browser" name="default" title='Sample Component - Example 2'>
       <view>
         <spacedlayout axis="y" spacing="5"></spacedlayout>
         <text>Sample application, with replicator</text>

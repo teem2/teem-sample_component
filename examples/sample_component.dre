@@ -1,6 +1,6 @@
 <composition>
   <screens>
-    <screen>
+    <screen type="browser" name="default" title='Sample Component - Example 1'>
       <view>
         <spacedlayout axis="y" spacing="5"></spacedlayout>
 
@@ -29,6 +29,11 @@
       </view>
     </screen>
   </screens>
+  <server>
+    <handler event="init">
+      console.log('SAMPLE COMPOSITION SERVER START');
+    </handler>
+  </server>
 </composition>
 <!-- The MIT License (MIT)
 
