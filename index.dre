@@ -1,0 +1,58 @@
+<plugin>
+
+  <classes>
+    <class name="teem-sample_component">
+      <!--/**
+        * @attribute {String} source
+        * The url retrieve contents from. The url is retrieved from the server.
+        */-->
+      <attribute name="src" value="" type="string"></attribute>
+      <setter name="src" args="val">
+        if (val) {
+          dr.teem.server.request(val).then((function (ret) {
+            this.setAttribute('response', ret);
+          }).bind(this));
+        }
+        return val;
+      </setter>
+
+      <!--/**
+        * @attribute {String} response
+        * The response received from the server when the src url is loaded.
+        */-->
+      <attribute name="response" value="" type="string"></attribute>
+
+    </class>
+  </classes>
+
+  <server>
+
+    <handler event="init">
+      this.__srequest = require('$PLUGIN/sync-request');
+      console.log('SAMPLE SERVER IS RUNNING')
+    </handler>
+
+    <method name="reverse" args="str">
+      if (str) {
+        return str.split('').reverse().join('');
+      }
+      return '';
+    </method>
+
+    <method name="request" args="url">
+      if (/^https?:.*/.test(url)) {
+        try {
+          var res = this.__srequest('GET', url);
+          var body = res.getBody().toString();
+          return body;
+        } catch(err) {
+          return ['[ERROR]', err.message].join(' ');
+        }
+      } else {
+        return this.reverse(url)
+      }
+    </method>
+
+  </server>
+
+</plugin>

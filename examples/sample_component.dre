@@ -1,30 +1,35 @@
-<view>
-  <spacedlayout axis="y" spacing="5"></spacedlayout>
+<composition>
+  <screens>
+    <screen>
+      <view>
+        <spacedlayout axis="y" spacing="5"></spacedlayout>
 
-  <view width="auto" height="auto">
-  <spacedlayout axis="x" spacing="5"></spacedlayout>
-    <inputtext id="src" width="500" height="25" bgcolor="gray" text="http://api.openweathermap.org/data/2.5/weather?q=San Francisco"></inputtext>
-    <labelbutton text="Load">
-      <handler event="onclick">
-        sample.setAttribute('src', src.text);
-      </handler>
-    </labelbutton>
-  </view>
-  
-  <text id="contents" width="100%" height="auto" multiline="true" bgcolor="#f0f0f0"></text>
+        <view width="auto" height="auto">
+          <spacedlayout axis="x" spacing="5"></spacedlayout>
+          <inputtext id="src" width="500" height="25" bgcolor="gray" text="http://api.openweathermap.org/data/2.5/weather?q=San Francisco"></inputtext>
+          <labelbutton text="Load">
+            <handler event="onclick">
+              sample.setAttribute('src', src.text);
+            </handler>
+          </labelbutton>
+        </view>
 
-  <teem-sample_component id="sample" src="">
-    <handler event="onsrc" args="url">
-      console.log("onsrc", url);
-    </handler>
-    <handler event="onresponse" args="data">
-      contents.setAttribute('text', data);
-      console.log(data);
-    </handler>
-    
-  </teem-sample_component>
+        <text id="contents" width="100%" height="auto" multiline="true" bgcolor="#f0f0f0"></text>
 
-</view>
+        <teem-sample_component id="sample" src="">
+          <handler event="onsrc" args="url">
+            console.log("onsrc", url);
+          </handler>
+          <handler event="onresponse" args="data">
+            contents.setAttribute('text', data);
+            console.log(data);
+          </handler>
+
+        </teem-sample_component>
+      </view>
+    </screen>
+  </screens>
+</composition>
 <!-- The MIT License (MIT)
 
 Copyright ( c ) 2015 Teem2 LLC
