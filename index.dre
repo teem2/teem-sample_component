@@ -28,8 +28,8 @@
   <server>
 
     <handler event="init">
+      console.log('SAMPLE COMPONENT PLUGIN START');
       this.__srequest = require('$PLUGIN/sync-request');
-      console.log('SAMPLE SERVER IS RUNNING')
     </handler>
 
     <method name="reverse" args="str">

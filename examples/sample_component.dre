@@ -31,7 +31,7 @@
   </screens>
   <server>
     <handler event="init">
-      console.log('SAMPLE COMPOSITION SERVER START');
+      console.log('SAMPLE COMPONENT PLUGIN EXAMPLE START');
     </handler>
   </server>
 </composition>
