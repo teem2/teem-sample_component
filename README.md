@@ -1,11 +1,10 @@
 # teem-sample_component
-A sample Dreem server component
 
-### Adding component to the server
+A sample [Dreem2](https://github.com/teem2/dreem2) server component
 
-```DREEM_COMPONENTS_ROOT``` specifies the root of optional server components, relative to the [server](https://github.com.teem2/server) installation.
+### Adding plugins to the dreem2 server
 
-For example, if the optional server components are installed in a projects directory at the same level as the server directory:
+Use one or more `-plugin` command line switches to indicate the root directory of the plugin you are loading.
 
-    DREEM_COMPONENTS_ROOT=../projects/ node.server.js
+    node ./server.js -plugin ../plugins/teem-sample_component/ -plugin ../plugins/soundcloud/
 
