@@ -1,63 +1,68 @@
 <!--
   Path to example: http://<server>/examples/teem/sample_component/sample_component2.dre
 -->
+<composition>
+  <screens>
+    <screen type="browser" name="default" title='Sample Component - Example 2'>
+      <view>
+        <spacedlayout axis="y" spacing="5"></spacedlayout>
+        <text>Sample application, with replicator</text>
 
-<view>
-  <spacedlayout axis="y" spacing="5"></spacedlayout>
-  <text>Sample application, with replicator</text>
-
-  <!-- Get location and pass api url to teem-sample_component -->
-  <view width="auto" height="auto">
-  <spacedlayout axis="x" spacing="5"></spacedlayout>
-    <inputtext id="src" width="200" height="25" bgcolor="gray" text="San Francisco"></inputtext>
-    <labelbutton text="Load">
-      <handler event="onclick">
-        var api_url = "http://api.openweathermap.org/data/2.5/forecast?q=" + src.text;
-        sample.setAttribute('src', api_url);
-      </handler>
-    </labelbutton>
-  </view>
+        <!-- Get location and pass api url to teem-sample_component -->
+        <view width="auto" height="auto">
+          <spacedlayout axis="x" spacing="5"></spacedlayout>
+            <inputtext id="src" width="200" height="25" bgcolor="gray" text="San Francisco"></inputtext>
+            <labelbutton text="Load">
+              <handler event="onclick">
+                var api_url = "http://api.openweathermap.org/data/2.5/forecast?q=" + src.text;
+                sample.setAttribute('src', api_url);
+              </handler>
+            </labelbutton>
+          </view>
   
-  <!-- Store each response as a weather object -->
-  <dataset name="dataset" id="dataset"></dataset>
+        <!-- Store each response as a weather object -->
+        <dataset name="dataset" id="dataset"></dataset>
 
-  <!-- replicator object -->
-  <class name="forecast" width="auto" height="auto" clickable="true">
-    <attribute name="data" value="null" type="expression"></attribute>    
+        <!-- replicator object -->
+        <class name="forecast" width="auto" height="auto" clickable="true">
+          <attribute name="data" value="null" type="expression"></attribute>
 
-    <text name="conditions" resize="true"></text>
+          <text name="conditions" resize="true"></text>
 
-    <handler event="ondata" args="data">
-      var date = data.dt_txt;
-      var weather = data.weather[0].description;
-      this.conditions.setAttribute('text', date + ": " + weather);
-    </handler>
-  </class>
+          <handler event="ondata" args="data">
+            var date = data.dt_txt;
+            var weather = data.weather[0].description;
+            this.conditions.setAttribute('text', date + ": " + weather);
+          </handler>
+        </class>
 
 
-  <!-- Replicator output -->
-  <view name="weather" width="400" height="600" bgcolor="#ffbbbb" scrollbars="true" scrollable="true">
-    <spacedlayout name="layout" axis="y" spacing="2"></spacedlayout>
-    <replicator datapath="$dataset/list[*]" classname="forecast">
-    </replicator>
-  </view>
+        <!-- Replicator output -->
+        <view name="weather" width="400" height="600" bgcolor="#ffbbbb" scrollbars="true" scrollable="true">
+          <spacedlayout name="layout" axis="y" spacing="2"></spacedlayout>
+          <replicator datapath="$dataset/list[*]" classname="forecast">
+          </replicator>
+        </view>
 
-  <!-- Send API to sample_component and parse json reply -->
-  <teem-sample_component id="sample" src="">
-    <handler event="onsrc" args="url">
-      console.log("onsrc", url);
-    </handler>
-    <handler event="onresponse" args="data">
-      if (!data) return;
-      // Parse the json and pass it to the dataset
-      var obj = JSON.parse(data);
-      //console.log('obj', obj);
-      dataset.setAttribute('data', obj);
-    </handler>
-    
-  </teem-sample_component>
+        <!-- Send API to sample_component and parse json reply -->
+        <teem-sample_component id="sample" src="">
+          <handler event="onsrc" args="url">
+            console.log("onsrc", url);
+          </handler>
+          <handler event="onresponse" args="data">
+            if (!data) return;
+            // Parse the json and pass it to the dataset
+            var obj = JSON.parse(data);
+            //console.log('obj', obj);
+            dataset.setAttribute('data', obj);
+          </handler>
 
-</view>
+        </teem-sample_component>
+
+      </view>
+    </screen>
+  </screens>
+</composition>
 <!-- The MIT License (MIT)
 
 Copyright ( c ) 2015 Teem2 LLC
