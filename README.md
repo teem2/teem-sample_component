@@ -4,7 +4,7 @@ This is a sample [DreemGL](https://github.com/teem2/dreemgl) component.
 
 ## Adding Components to the Dreem GL server
 
-Dreem GL components provide additonal fucntionality to compositions and are implemented as sibling directories that live
+Dreem GL components provide additonal fucntionality to compositions andare implemented as sibling directories (by default) that live
 along side the compositions, and can even be entire composition hierarchies themselves.  The simplest way to add a
 component to a Dreem GL server is with a symlink
 
@@ -64,3 +64,8 @@ from this repo as `sample$fetcher` like so:
 Dreem GL does not require external components to take on any special structure to function, only that the component's 
 directory structure be copied or linked into the server's `compositions/` directory.  External libraries can be placed 
 in `node_modules` and `package.json` defines it's contents and dependancies like a typical `npm` package. 
+
+## Mounting components outisde of compositions directory
+
+The default search directory for external components can be overridden by setting `define.$plugins` variable to the 
+appropriate directory (defaults to `$root/compositions`).
