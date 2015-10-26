@@ -38,7 +38,8 @@ like so:
 This class would look in the `compositions` directory for a file named `component/subdir/classname.js`, 
 and if found will load it out of that directory.
 
-As a concrete example, the sample$fetcher can be used elsewhere like so:
+As a concrete example, if placed into the compositions directory as `sample` you can then use the fetcher 
+from this repo as `sample$fetcher` like so:
 
     define.class(function(composition, screens, screen, button, sample$fetcher) {
         this.render = function() {
@@ -62,4 +63,4 @@ As a concrete example, the sample$fetcher can be used elsewhere like so:
 
 Dreem GL does not require external components to take on any special structure to function, only that the component's 
 directory structure be copied or linked into the server's `compositions/` directory.  External libraries can be placed 
-in `node_modules` and `package.json` defines it's contents and dependancies like a typical ``npm` package. 
+in `node_modules` and `package.json` defines it's contents and dependancies like a typical `npm` package. 
