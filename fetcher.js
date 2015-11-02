@@ -1,10 +1,14 @@
 define.class(function fetcher(server) {
 
-    //attribute RPC isn't working yet
-    //this.attribute("url", {type:String, value:""});
-    //this.attribute("response", {type:String, value:""});
+    this.attribute("response", {type:String, value:""});
 
-    // request will be performed on the server
+    this.attribute("url", {type:String, value:""});
+
+    //when the url is set, go and grab the content and stick it in the response attribute
+    this.onurl = function(url) {
+        this.response = this.request(url)
+    };
+
     this.request = function(url) {
         if (/^https?:.*/.test(url)) {
             try {

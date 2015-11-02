@@ -2,10 +2,10 @@ define.class(function(composition, screens, screen, view, text, button, sample$f
 
     this.render = function() {
         return [
-            sample$fetcher({name:'sampfetcher'}),
+            sample$fetcher({name:'fetchy'}),
             screens(
-                screen({name:'main'},
-                    sample$example$urlviewer({ x:10, y:10, bgcolor:"transparent", fetcher:'sampfetcher' })
+                screen(
+                    sample$example$urlviewer({ fetcherName:'fetchy' })
                 )
             )
         ]

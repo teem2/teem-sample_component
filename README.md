@@ -58,6 +58,9 @@ from this repo as `sample$fetcher` like so:
         }
     });
 
+You can find an additional example in the `index.js` (mounted at `http://localhost:2000/sample`).  In this example a 
+simple "urlviewer" widget wires up both ends of fetcher, first programmatically (`fetcher.url = this.parent.urlbox.text`) 
+then with attribute constraints (`'${this.rpc.' + this.classroot.fetcherName + '.response}'`).
 
 ## Struture of a Dreem GL component
 
