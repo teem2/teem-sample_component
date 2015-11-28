@@ -4,7 +4,7 @@ This is a sample [DreemGL](https://github.com/teem2/dreemgl) component.
 
 ## Adding Components to the Dreem GL server
 
-Dreem GL components provide additonal fucntionality to compositions andare implemented as sibling directories (by default) that live
+Dreem GL components provide additonal fucntionality to compositions and are implemented as sibling directories (by default) that live
 along side the compositions, and can even be entire composition hierarchies themselves.  The simplest way to add a
 component to a Dreem GL server is with a symlink
 

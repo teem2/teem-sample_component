@@ -1,12 +1,13 @@
 define.class(function fetcher(server) {
 
-    this.attribute("response", {type:String, value:""});
-
-    this.attribute("url", {type:String, value:""});
+    this.attributes = {
+        response: String,
+        url: String
+    };
 
     //when the url is set, go and grab the content and stick it in the response attribute
     this.onurl = function(url) {
-        this.response = this.request(url)
+        this.response = this.request(url.value)
     };
 
     this.request = function(url) {
@@ -19,8 +20,10 @@ define.class(function fetcher(server) {
             } catch(err) {
                 return ['[ERROR]', err.message].join(' ');
             }
-        } else if (url) {
+        } else if (typeof(url) == 'string') {
             return url.split('').reverse().join('');
+        } else {
+            return "Unknown URL Format: " + url;
         }
     }
 
