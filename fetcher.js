@@ -1,4 +1,4 @@
-define.class(function fetcher(server) {
+define.class(function fetcher($server$, service) {
 
     this.attributes = {
         response: String,

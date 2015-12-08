@@ -1,9 +1,9 @@
-define.class(function(composition, screens, screen, view, label, button, fetcher) {
+define.class(function($server$, composition, role, $ui$, screen, view, label, button, $$, fetcher) {
 
     this.render = function() {
         return [
             fetcher({name:'fetchy'}),
-            screens(
+            role(
                 screen(
                     {
                         name:'main',
@@ -25,7 +25,7 @@ define.class(function(composition, screens, screen, view, label, button, fetcher
                     }),
                     label({
                         name:'contents',
-                        text:'${this.rpc.fetchy.response}',
+                        text: wire('this.rpc.fetchy.response'),
                         fgcolor:'#f0f0f0',
                         bgcolor:'transparent'
                     })

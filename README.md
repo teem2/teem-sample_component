@@ -27,25 +27,25 @@ If required, be sure to install any dependancies in the component directory:
 Classes from components can be used in your compositions by referencing the component and class using the '$' syntax,
 like so:
 
-    define.class(function(composition, component$subdir$classname) {
+    define.class(function($server$, composition, $component$subdir$classname) {
         this.render = function() {
             return [
-                component$subdir$classname({text:'used like any dreemgl class'})
+                $component$subdir$classname({text:'used like any dreemgl class'})
             ]
         }
     });
 
-This class would look in the `compositions` directory for a file named `component/subdir/classname.js`, 
+This class would look in the root directory for a file named `component/subdir/classname.js`, 
 and if found will load it out of that directory.
 
-As a concrete example, if placed into the compositions directory as `sample` you can then use the fetcher 
-from this repo as `sample$fetcher` like so:
+As a concrete example, if placed into the root directory as `sample` you can then use the fetcher 
+from this repo as `$sample$, fetcher` like so:
 
-    define.class(function(composition, screens, screen, button, sample$fetcher) {
+    define.class(function($server$, composition, role, $ui$, screen, button, $sample$, fetcher) {
         this.render = function() {
             return [
-                sample$fetcher({name:'fetcher'}),
-                screens(
+                fetcher({name:'fetcher'}),
+                role(
                     screen(
                         button({text:'click me', click:function() {
                             this.rpc.fetcher.request('http://example.com').then((function(answer){
@@ -58,9 +58,9 @@ from this repo as `sample$fetcher` like so:
         }
     });
 
-You can find an additional example in the `index.js` (mounted at `http://localhost:2000/sample`).  In this example a 
-simple "urlviewer" widget wires up both ends of fetcher, first programmatically (`fetcher.url = this.parent.urlbox.text`) 
-then with attribute constraints (`'${this.rpc.' + this.classroot.fetcherName + '.response}'`).
+You can find an additional example in the `example.js` (mounted at `http://localhost:2000/sample/example`).  In this example a 
+simple widget wires up both ends of fetcher, first programmatically on click (`this.rpc.fetchy.url = this.parent.urlbox.text`) 
+then the result with attribute constraints (`wire('this.rpc.fetchy.response')`).
 
 ## Struture of a Dreem GL component
 
@@ -68,7 +68,3 @@ Dreem GL does not require external components to take on any special structure t
 directory structure be copied or linked into the server's `compositions/` directory.  External libraries can be placed 
 in `node_modules` and `package.json` defines it's contents and dependancies like a typical `npm` package. 
 
-## Mounting components outisde of compositions directory
-
-The default search directory for external components can be overridden by setting `define.$plugins` variable to the 
-appropriate directory (defaults to `$root/compositions`).
